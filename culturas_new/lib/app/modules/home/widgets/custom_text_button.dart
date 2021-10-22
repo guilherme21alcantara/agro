@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+
+class CustomTextButton extends StatelessWidget {
+  final Function()? onPressed;
+  final IconData icon;
+  final String paginaAtual;
+  final Color cor;
+
+  CustomTextButton(
+      {required this.icon, required this.paginaAtual, required this.cor, this.onPressed});
+
+  final page = ['Atividades', 'Indicadores'];
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton.icon(
+      onPressed: onPressed,
+      icon: Icon(icon,
+          color: cor, ),
+      label: Text(paginaAtual,
+          style: TextStyle(
+              color:cor,)),
+    );
+  }
+}
