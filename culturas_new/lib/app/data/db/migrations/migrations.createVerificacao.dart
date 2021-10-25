@@ -23,4 +23,10 @@ class TablePontoVerificacao extends Table {
   TextColumn? get observacao => text().nullable()();
   DateTimeColumn? get createAt => dateTime()();
   DateTimeColumn? get updateAt => dateTime()();
+  TextColumn? get praga => text().nullable()();
+  TextColumn? get amostragem => text().nullable()();
+  TextColumn? get fase => text().nullable()();
+  TextColumn? get intensidade => text().nullable()();
+  TextColumn? get estrago => text().nullable()();
+  TextColumn? get observacoes => text().nullable()();
 }

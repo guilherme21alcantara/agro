@@ -2762,6 +2762,12 @@ class TablePontoVerificacaoData extends DataClass
   final String? observacao;
   final DateTime createAt;
   final DateTime updateAt;
+  final String? praga;
+  final String? amostragem;
+  final String? fase;
+  final String? intensidade;
+  final String? estrago;
+  final String? observacoes;
   TablePontoVerificacaoData(
       {required this.id,
       required this.idTalhao,
@@ -2772,7 +2778,13 @@ class TablePontoVerificacaoData extends DataClass
       required this.isPendente,
       this.observacao,
       required this.createAt,
-      required this.updateAt});
+      required this.updateAt,
+      this.praga,
+      this.amostragem,
+      this.fase,
+      this.intensidade,
+      this.estrago,
+      this.observacoes});
   factory TablePontoVerificacaoData.fromData(
       Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
@@ -2798,6 +2810,18 @@ class TablePontoVerificacaoData extends DataClass
           .mapFromDatabaseResponse(data['${effectivePrefix}create_at'])!,
       updateAt: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}update_at'])!,
+      praga: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}praga']),
+      amostragem: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}amostragem']),
+      fase: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}fase']),
+      intensidade: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}intensidade']),
+      estrago: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}estrago']),
+      observacoes: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}observacoes']),
     );
   }
   @override
@@ -2819,6 +2843,24 @@ class TablePontoVerificacaoData extends DataClass
     }
     map['create_at'] = Variable<DateTime>(createAt);
     map['update_at'] = Variable<DateTime>(updateAt);
+    if (!nullToAbsent || praga != null) {
+      map['praga'] = Variable<String?>(praga);
+    }
+    if (!nullToAbsent || amostragem != null) {
+      map['amostragem'] = Variable<String?>(amostragem);
+    }
+    if (!nullToAbsent || fase != null) {
+      map['fase'] = Variable<String?>(fase);
+    }
+    if (!nullToAbsent || intensidade != null) {
+      map['intensidade'] = Variable<String?>(intensidade);
+    }
+    if (!nullToAbsent || estrago != null) {
+      map['estrago'] = Variable<String?>(estrago);
+    }
+    if (!nullToAbsent || observacoes != null) {
+      map['observacoes'] = Variable<String?>(observacoes);
+    }
     return map;
   }
 
@@ -2838,6 +2880,21 @@ class TablePontoVerificacaoData extends DataClass
           : Value(observacao),
       createAt: Value(createAt),
       updateAt: Value(updateAt),
+      praga:
+          praga == null && nullToAbsent ? const Value.absent() : Value(praga),
+      amostragem: amostragem == null && nullToAbsent
+          ? const Value.absent()
+          : Value(amostragem),
+      fase: fase == null && nullToAbsent ? const Value.absent() : Value(fase),
+      intensidade: intensidade == null && nullToAbsent
+          ? const Value.absent()
+          : Value(intensidade),
+      estrago: estrago == null && nullToAbsent
+          ? const Value.absent()
+          : Value(estrago),
+      observacoes: observacoes == null && nullToAbsent
+          ? const Value.absent()
+          : Value(observacoes),
     );
   }
 
@@ -2855,6 +2912,12 @@ class TablePontoVerificacaoData extends DataClass
       observacao: serializer.fromJson<String?>(json['observacao']),
       createAt: serializer.fromJson<DateTime>(json['createAt']),
       updateAt: serializer.fromJson<DateTime>(json['updateAt']),
+      praga: serializer.fromJson<String?>(json['praga']),
+      amostragem: serializer.fromJson<String?>(json['amostragem']),
+      fase: serializer.fromJson<String?>(json['fase']),
+      intensidade: serializer.fromJson<String?>(json['intensidade']),
+      estrago: serializer.fromJson<String?>(json['estrago']),
+      observacoes: serializer.fromJson<String?>(json['observacoes']),
     );
   }
   @override
@@ -2871,6 +2934,12 @@ class TablePontoVerificacaoData extends DataClass
       'observacao': serializer.toJson<String?>(observacao),
       'createAt': serializer.toJson<DateTime>(createAt),
       'updateAt': serializer.toJson<DateTime>(updateAt),
+      'praga': serializer.toJson<String?>(praga),
+      'amostragem': serializer.toJson<String?>(amostragem),
+      'fase': serializer.toJson<String?>(fase),
+      'intensidade': serializer.toJson<String?>(intensidade),
+      'estrago': serializer.toJson<String?>(estrago),
+      'observacoes': serializer.toJson<String?>(observacoes),
     };
   }
 
@@ -2884,7 +2953,13 @@ class TablePontoVerificacaoData extends DataClass
           bool? isPendente,
           String? observacao,
           DateTime? createAt,
-          DateTime? updateAt}) =>
+          DateTime? updateAt,
+          String? praga,
+          String? amostragem,
+          String? fase,
+          String? intensidade,
+          String? estrago,
+          String? observacoes}) =>
       TablePontoVerificacaoData(
         id: id ?? this.id,
         idTalhao: idTalhao ?? this.idTalhao,
@@ -2896,6 +2971,12 @@ class TablePontoVerificacaoData extends DataClass
         observacao: observacao ?? this.observacao,
         createAt: createAt ?? this.createAt,
         updateAt: updateAt ?? this.updateAt,
+        praga: praga ?? this.praga,
+        amostragem: amostragem ?? this.amostragem,
+        fase: fase ?? this.fase,
+        intensidade: intensidade ?? this.intensidade,
+        estrago: estrago ?? this.estrago,
+        observacoes: observacoes ?? this.observacoes,
       );
   @override
   String toString() {
@@ -2909,7 +2990,13 @@ class TablePontoVerificacaoData extends DataClass
           ..write('isPendente: $isPendente, ')
           ..write('observacao: $observacao, ')
           ..write('createAt: $createAt, ')
-          ..write('updateAt: $updateAt')
+          ..write('updateAt: $updateAt, ')
+          ..write('praga: $praga, ')
+          ..write('amostragem: $amostragem, ')
+          ..write('fase: $fase, ')
+          ..write('intensidade: $intensidade, ')
+          ..write('estrago: $estrago, ')
+          ..write('observacoes: $observacoes')
           ..write(')'))
         .toString();
   }
@@ -2931,8 +3018,22 @@ class TablePontoVerificacaoData extends DataClass
                               isPendente.hashCode,
                               $mrjc(
                                   observacao.hashCode,
-                                  $mrjc(createAt.hashCode,
-                                      updateAt.hashCode))))))))));
+                                  $mrjc(
+                                      createAt.hashCode,
+                                      $mrjc(
+                                          updateAt.hashCode,
+                                          $mrjc(
+                                              praga.hashCode,
+                                              $mrjc(
+                                                  amostragem.hashCode,
+                                                  $mrjc(
+                                                      fase.hashCode,
+                                                      $mrjc(
+                                                          intensidade.hashCode,
+                                                          $mrjc(
+                                                              estrago.hashCode,
+                                                              observacoes
+                                                                  .hashCode))))))))))))))));
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -2946,7 +3047,13 @@ class TablePontoVerificacaoData extends DataClass
           other.isPendente == this.isPendente &&
           other.observacao == this.observacao &&
           other.createAt == this.createAt &&
-          other.updateAt == this.updateAt);
+          other.updateAt == this.updateAt &&
+          other.praga == this.praga &&
+          other.amostragem == this.amostragem &&
+          other.fase == this.fase &&
+          other.intensidade == this.intensidade &&
+          other.estrago == this.estrago &&
+          other.observacoes == this.observacoes);
 }
 
 class TablePontoVerificacaoCompanion
@@ -2961,6 +3068,12 @@ class TablePontoVerificacaoCompanion
   final Value<String?> observacao;
   final Value<DateTime> createAt;
   final Value<DateTime> updateAt;
+  final Value<String?> praga;
+  final Value<String?> amostragem;
+  final Value<String?> fase;
+  final Value<String?> intensidade;
+  final Value<String?> estrago;
+  final Value<String?> observacoes;
   const TablePontoVerificacaoCompanion({
     this.id = const Value.absent(),
     this.idTalhao = const Value.absent(),
@@ -2972,6 +3085,12 @@ class TablePontoVerificacaoCompanion
     this.observacao = const Value.absent(),
     this.createAt = const Value.absent(),
     this.updateAt = const Value.absent(),
+    this.praga = const Value.absent(),
+    this.amostragem = const Value.absent(),
+    this.fase = const Value.absent(),
+    this.intensidade = const Value.absent(),
+    this.estrago = const Value.absent(),
+    this.observacoes = const Value.absent(),
   });
   TablePontoVerificacaoCompanion.insert({
     this.id = const Value.absent(),
@@ -2984,6 +3103,12 @@ class TablePontoVerificacaoCompanion
     this.observacao = const Value.absent(),
     required DateTime createAt,
     required DateTime updateAt,
+    this.praga = const Value.absent(),
+    this.amostragem = const Value.absent(),
+    this.fase = const Value.absent(),
+    this.intensidade = const Value.absent(),
+    this.estrago = const Value.absent(),
+    this.observacoes = const Value.absent(),
   })  : idTalhao = Value(idTalhao),
         latitude = Value(latitude),
         longitude = Value(longitude),
@@ -3001,6 +3126,12 @@ class TablePontoVerificacaoCompanion
     Expression<String?>? observacao,
     Expression<DateTime>? createAt,
     Expression<DateTime>? updateAt,
+    Expression<String?>? praga,
+    Expression<String?>? amostragem,
+    Expression<String?>? fase,
+    Expression<String?>? intensidade,
+    Expression<String?>? estrago,
+    Expression<String?>? observacoes,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -3013,6 +3144,12 @@ class TablePontoVerificacaoCompanion
       if (observacao != null) 'observacao': observacao,
       if (createAt != null) 'create_at': createAt,
       if (updateAt != null) 'update_at': updateAt,
+      if (praga != null) 'praga': praga,
+      if (amostragem != null) 'amostragem': amostragem,
+      if (fase != null) 'fase': fase,
+      if (intensidade != null) 'intensidade': intensidade,
+      if (estrago != null) 'estrago': estrago,
+      if (observacoes != null) 'observacoes': observacoes,
     });
   }
 
@@ -3026,7 +3163,13 @@ class TablePontoVerificacaoCompanion
       Value<bool>? isPendente,
       Value<String?>? observacao,
       Value<DateTime>? createAt,
-      Value<DateTime>? updateAt}) {
+      Value<DateTime>? updateAt,
+      Value<String?>? praga,
+      Value<String?>? amostragem,
+      Value<String?>? fase,
+      Value<String?>? intensidade,
+      Value<String?>? estrago,
+      Value<String?>? observacoes}) {
     return TablePontoVerificacaoCompanion(
       id: id ?? this.id,
       idTalhao: idTalhao ?? this.idTalhao,
@@ -3038,6 +3181,12 @@ class TablePontoVerificacaoCompanion
       observacao: observacao ?? this.observacao,
       createAt: createAt ?? this.createAt,
       updateAt: updateAt ?? this.updateAt,
+      praga: praga ?? this.praga,
+      amostragem: amostragem ?? this.amostragem,
+      fase: fase ?? this.fase,
+      intensidade: intensidade ?? this.intensidade,
+      estrago: estrago ?? this.estrago,
+      observacoes: observacoes ?? this.observacoes,
     );
   }
 
@@ -3074,6 +3223,24 @@ class TablePontoVerificacaoCompanion
     if (updateAt.present) {
       map['update_at'] = Variable<DateTime>(updateAt.value);
     }
+    if (praga.present) {
+      map['praga'] = Variable<String?>(praga.value);
+    }
+    if (amostragem.present) {
+      map['amostragem'] = Variable<String?>(amostragem.value);
+    }
+    if (fase.present) {
+      map['fase'] = Variable<String?>(fase.value);
+    }
+    if (intensidade.present) {
+      map['intensidade'] = Variable<String?>(intensidade.value);
+    }
+    if (estrago.present) {
+      map['estrago'] = Variable<String?>(estrago.value);
+    }
+    if (observacoes.present) {
+      map['observacoes'] = Variable<String?>(observacoes.value);
+    }
     return map;
   }
 
@@ -3089,7 +3256,13 @@ class TablePontoVerificacaoCompanion
           ..write('isPendente: $isPendente, ')
           ..write('observacao: $observacao, ')
           ..write('createAt: $createAt, ')
-          ..write('updateAt: $updateAt')
+          ..write('updateAt: $updateAt, ')
+          ..write('praga: $praga, ')
+          ..write('amostragem: $amostragem, ')
+          ..write('fase: $fase, ')
+          ..write('intensidade: $intensidade, ')
+          ..write('estrago: $estrago, ')
+          ..write('observacoes: $observacoes')
           ..write(')'))
         .toString();
   }
@@ -3145,6 +3318,32 @@ class $TablePontoVerificacaoTable extends TablePontoVerificacao
   late final GeneratedColumn<DateTime?> updateAt = GeneratedColumn<DateTime?>(
       'update_at', aliasedName, false,
       typeName: 'INTEGER', requiredDuringInsert: true);
+  final VerificationMeta _pragaMeta = const VerificationMeta('praga');
+  late final GeneratedColumn<String?> praga = GeneratedColumn<String?>(
+      'praga', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _amostragemMeta = const VerificationMeta('amostragem');
+  late final GeneratedColumn<String?> amostragem = GeneratedColumn<String?>(
+      'amostragem', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _faseMeta = const VerificationMeta('fase');
+  late final GeneratedColumn<String?> fase = GeneratedColumn<String?>(
+      'fase', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _intensidadeMeta =
+      const VerificationMeta('intensidade');
+  late final GeneratedColumn<String?> intensidade = GeneratedColumn<String?>(
+      'intensidade', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _estragoMeta = const VerificationMeta('estrago');
+  late final GeneratedColumn<String?> estrago = GeneratedColumn<String?>(
+      'estrago', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
+  final VerificationMeta _observacoesMeta =
+      const VerificationMeta('observacoes');
+  late final GeneratedColumn<String?> observacoes = GeneratedColumn<String?>(
+      'observacoes', aliasedName, true,
+      typeName: 'TEXT', requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         id,
@@ -3156,7 +3355,13 @@ class $TablePontoVerificacaoTable extends TablePontoVerificacao
         isPendente,
         observacao,
         createAt,
-        updateAt
+        updateAt,
+        praga,
+        amostragem,
+        fase,
+        intensidade,
+        estrago,
+        observacoes
       ];
   @override
   String get aliasedName => _alias ?? 'table_ponto_verificacao';
@@ -3224,6 +3429,36 @@ class $TablePontoVerificacaoTable extends TablePontoVerificacao
           updateAt.isAcceptableOrUnknown(data['update_at']!, _updateAtMeta));
     } else if (isInserting) {
       context.missing(_updateAtMeta);
+    }
+    if (data.containsKey('praga')) {
+      context.handle(
+          _pragaMeta, praga.isAcceptableOrUnknown(data['praga']!, _pragaMeta));
+    }
+    if (data.containsKey('amostragem')) {
+      context.handle(
+          _amostragemMeta,
+          amostragem.isAcceptableOrUnknown(
+              data['amostragem']!, _amostragemMeta));
+    }
+    if (data.containsKey('fase')) {
+      context.handle(
+          _faseMeta, fase.isAcceptableOrUnknown(data['fase']!, _faseMeta));
+    }
+    if (data.containsKey('intensidade')) {
+      context.handle(
+          _intensidadeMeta,
+          intensidade.isAcceptableOrUnknown(
+              data['intensidade']!, _intensidadeMeta));
+    }
+    if (data.containsKey('estrago')) {
+      context.handle(_estragoMeta,
+          estrago.isAcceptableOrUnknown(data['estrago']!, _estragoMeta));
+    }
+    if (data.containsKey('observacoes')) {
+      context.handle(
+          _observacoesMeta,
+          observacoes.isAcceptableOrUnknown(
+              data['observacoes']!, _observacoesMeta));
     }
     return context;
   }
