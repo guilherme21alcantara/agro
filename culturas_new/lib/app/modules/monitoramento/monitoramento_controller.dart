@@ -219,7 +219,6 @@ class MonitoramentoController extends GetxController {
     });
   }
 
-  
   void inicializarMapBoxVerificacaoForm(MapboxMapController mapController,
       LatLng posicaoPonto, PontoVerificacao pontoVerificacao) async {
     sleep((Duration(seconds: 1)));
@@ -242,7 +241,7 @@ class MonitoramentoController extends GetxController {
       if (pontoVerificacao.isPendente!) {
         pontosVerificacaoTalhao.add(
             LatLng(pontoVerificacao.latitude!, pontoVerificacao.longitude!));
-        
+
         mapController.addSymbol(
             SymbolOptions(
                 geometry: posicaoPonto,
@@ -255,9 +254,7 @@ class MonitoramentoController extends GetxController {
       } else {
         mapController.addSymbol(
           SymbolOptions(
-              geometry: posicao,
-              iconSize: 1,
-              iconImage: "assets/marker02.png"),
+              geometry: posicao, iconSize: 1, iconImage: "assets/marker02.png"),
           {
             "pontoVerificacao": pontoVerificacao,
             "idPontoVerificacao": pontoVerificacao.id
@@ -292,12 +289,18 @@ class MonitoramentoController extends GetxController {
     }
   }
 
-  Future<void> salvar(PontoVerificacao pontoVerificacao, int idTalhao) async {
+  Future<void> salvar(PontoVerificacao pontoVerificacao, int idTalhao,
+      List<String?> pragaObject) async {
     // TODO Conectar e salvar ao DAO de Talhao e DAO de Ponto de Verificacao
 
     pontoVerificacao.foto = pontoVerificacao.foto != null
         ? pontoVerificacao.foto
         : base64.encode(fotoBase64!.toList());
+    pontoVerificacao.praga = pragaObject[0];
+    pontoVerificacao.amostragem = pragaObject[1];
+    pontoVerificacao.fase = pragaObject[2];
+    pontoVerificacao.intensidade = pragaObject[3];
+    pontoVerificacao.estrago = pragaObject[3];
     pontoVerificacao.observacao = txtObservacao;
     pontoVerificacao.isPendente = false;
 

@@ -22,11 +22,35 @@ class FormVerificacaoScreen extends StatefulWidget {
 
 class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
   bool _fotoTirada = false;
-  var praga = <String>['Roscas', 'Nóctuas', 'Melolonta', 'Ralos', 'Alfinetes', 'Brocas'];
+  var praga = <String>[
+    'Roscas',
+    'Nóctuas',
+    'Melolonta',
+    'Ralos',
+    'Alfinetes',
+    'Brocas'
+  ];
   var amostragem = <String>['Visual(VIS)', 'Armadilhas(ARM)', 'Pancadas(PAN)'];
   var fase = <String>['Ovos/Postura(PT)', 'Adultos(Ad)', 'Ninfas/Larvas(N)'];
-  var intensidade = <String>['0 (Ausência)','1 (até 5%)','2 (5% - 10%)','3 (10% - 20%)','4 (20% - 35%)','5 (35% - 50%)','6 (50% - 75%)','7 (75% - 100%)'];
+  var intensidade = <String>[
+    '0 (Ausência)',
+    '1 (até 5%)',
+    '2 (5% - 10%)',
+    '3 (10% - 20%)',
+    '4 (20% - 35%)',
+    '5 (35% - 50%)',
+    '6 (50% - 75%)',
+    '7 (75% - 100%)'
+  ];
   TextEditingController txtObservacaoController = TextEditingController();
+  DropdownEditingController<String>? pragaController =
+      DropdownEditingController();
+  DropdownEditingController<String>? amostragemController =
+      DropdownEditingController();
+  DropdownEditingController<String>? faseController =
+      DropdownEditingController();
+  DropdownEditingController<String>? intensidadeController =
+      DropdownEditingController();
 
   @override
   void initState() {
@@ -43,6 +67,7 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<String?> pragaObject = List.empty(growable: true);
     return Scaffold(
         appBar: AppBar(
             backgroundColor: primaryColor,
@@ -136,89 +161,115 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
                           },
                         ),
                       ),
-                      Container(
-                                  height: 60,
-                                  width: 360,
-                                  child: TextDropdownFormField(
-                                    options: praga,
-                                    decoration: InputDecoration(
-                                      
-                                        border: OutlineInputBorder(borderSide: BorderSide(color: primaryColor!)),
-                                        
-                                        suffixIcon: Icon(Icons.arrow_drop_down),
-
-                                        labelText: "Praga"),
-                                    dropdownHeight: 80,
-                                  ),
-                                ),
-                        SizedBox(height: 10,),
-                        Container(
-                                  height: 60,
-                                  width: 360,
-                                  child: TextDropdownFormField(
-                                    options: amostragem,
-                                    decoration: InputDecoration(
-                                      
-                                        border: OutlineInputBorder(borderSide: BorderSide(color: primaryColor!)),
-                                        
-                                        suffixIcon: Icon(Icons.arrow_drop_down),
-
-                                        labelText: "Amostragem"),
-                                    dropdownHeight: 80,
-                                  ),
-                                ),
-                        SizedBox(height: 10,),
-                        Container(
-                                  height: 60,
-                                  width: 360,
-                                  child: TextDropdownFormField(
-                                    options: fase,
-                                    decoration: InputDecoration(
-                                      
-                                        border: OutlineInputBorder(borderSide: BorderSide(color: primaryColor!)),
-                                        
-                                        suffixIcon: Icon(Icons.arrow_drop_down),
-
-                                        labelText: "Fase"),
-                                    dropdownHeight: 80,
-                                  ),
-                                ),
-                        SizedBox(height: 10,),
-                        Row(children: 
-                        [
-                          SizedBox(width: 15,),
-                          Container(
-                                  height: 60,
-                                  width: 170,
-                                  child: TextDropdownFormField(
-                                    options: intensidade,
-                                    decoration: InputDecoration(
-                                      
-                                        border: OutlineInputBorder(borderSide: BorderSide(color: primaryColor!)),
-                                        
-                                        suffixIcon: Icon(Icons.arrow_drop_down),
-
-                                        labelText: "Intensidade "),
-                                    dropdownHeight: 80,
-                                  ),
-                                ),
-                                SizedBox(width: 20,),
-                          Container(
-                                  height: 60,
-                                  width: 170,
-                                  child: TextDropdownFormField(
-                                    options: intensidade,
-                                    decoration: InputDecoration(
-                                      
-                                        border: OutlineInputBorder(borderSide: BorderSide(color: primaryColor!)),
-                                        
-                                        suffixIcon: Icon(Icons.arrow_drop_down),
-
-                                        labelText: "Estrago"),
-                                    dropdownHeight: 80,
-                                  ),
-                                ),
-                        ],),
+                Container(
+                  height: 60,
+                  width: 360,
+                  child: TextDropdownFormField(
+                    options: praga,
+                    controller: pragaController,
+                    onSaved: (text) {
+                      text = pragaController!.value;
+                      pragaObject[0] = text;
+                    },
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: primaryColor!)),
+                        suffixIcon: Icon(Icons.arrow_drop_down),
+                        labelText: "Praga"),
+                    dropdownHeight: 80,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  height: 60,
+                  width: 360,
+                  child: TextDropdownFormField(
+                    options: amostragem,
+                    controller: amostragemController,
+                    onSaved: (text) {
+                      text = pragaController!.value;
+                      pragaObject[1] = text;
+                    },
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: primaryColor!)),
+                        suffixIcon: Icon(Icons.arrow_drop_down),
+                        labelText: "Amostragem"),
+                    dropdownHeight: 80,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  height: 60,
+                  width: 360,
+                  child: TextDropdownFormField(
+                    options: fase,
+                    controller: faseController,
+                    onSaved: (text) {
+                      text = pragaController!.value;
+                      pragaObject[2] = text;
+                    },
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: primaryColor!)),
+                        suffixIcon: Icon(Icons.arrow_drop_down),
+                        labelText: "Fase"),
+                    dropdownHeight: 80,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Container(
+                      height: 60,
+                      width: 170,
+                      child: TextDropdownFormField(
+                        options: intensidade,
+                        controller: intensidadeController,
+                        onSaved: (text) {
+                          text = pragaController!.value;
+                          pragaObject[3] = text;
+                        },
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: primaryColor!)),
+                            suffixIcon: Icon(Icons.arrow_drop_down),
+                            labelText: "Intensidade "),
+                        dropdownHeight: 80,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Container(
+                      height: 60,
+                      width: 170,
+                      child: TextDropdownFormField(
+                        options: intensidade,
+                        controller: intensidadeController,
+                        onSaved: (text) {
+                          text = pragaController!.value;
+                          pragaObject[3] = text;
+                        },
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: primaryColor!)),
+                            suffixIcon: Icon(Icons.arrow_drop_down),
+                            labelText: "Estrago"),
+                        dropdownHeight: 80,
+                      ),
+                    ),
+                  ],
+                ),
                 Container(
                     margin: EdgeInsets.all(12),
                     alignment: Alignment.centerLeft,
@@ -256,8 +307,8 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
                   ),
                   onTap: () {
                     if (_fotoTirada) {
-                      controller.salvar(
-                          widget.pontoVerificacao, widget.idTalhao);
+                      controller.salvar(widget.pontoVerificacao,
+                          widget.idTalhao, pragaObject);
                       Get.back();
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(

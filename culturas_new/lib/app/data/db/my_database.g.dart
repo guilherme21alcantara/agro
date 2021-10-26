@@ -2767,7 +2767,6 @@ class TablePontoVerificacaoData extends DataClass
   final String? fase;
   final String? intensidade;
   final String? estrago;
-  final String? observacoes;
   TablePontoVerificacaoData(
       {required this.id,
       required this.idTalhao,
@@ -2783,8 +2782,7 @@ class TablePontoVerificacaoData extends DataClass
       this.amostragem,
       this.fase,
       this.intensidade,
-      this.estrago,
-      this.observacoes});
+      this.estrago});
   factory TablePontoVerificacaoData.fromData(
       Map<String, dynamic> data, GeneratedDatabase db,
       {String? prefix}) {
@@ -2820,8 +2818,6 @@ class TablePontoVerificacaoData extends DataClass
           .mapFromDatabaseResponse(data['${effectivePrefix}intensidade']),
       estrago: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}estrago']),
-      observacoes: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}observacoes']),
     );
   }
   @override
@@ -2858,9 +2854,6 @@ class TablePontoVerificacaoData extends DataClass
     if (!nullToAbsent || estrago != null) {
       map['estrago'] = Variable<String?>(estrago);
     }
-    if (!nullToAbsent || observacoes != null) {
-      map['observacoes'] = Variable<String?>(observacoes);
-    }
     return map;
   }
 
@@ -2892,9 +2885,6 @@ class TablePontoVerificacaoData extends DataClass
       estrago: estrago == null && nullToAbsent
           ? const Value.absent()
           : Value(estrago),
-      observacoes: observacoes == null && nullToAbsent
-          ? const Value.absent()
-          : Value(observacoes),
     );
   }
 
@@ -2917,7 +2907,6 @@ class TablePontoVerificacaoData extends DataClass
       fase: serializer.fromJson<String?>(json['fase']),
       intensidade: serializer.fromJson<String?>(json['intensidade']),
       estrago: serializer.fromJson<String?>(json['estrago']),
-      observacoes: serializer.fromJson<String?>(json['observacoes']),
     );
   }
   @override
@@ -2939,7 +2928,6 @@ class TablePontoVerificacaoData extends DataClass
       'fase': serializer.toJson<String?>(fase),
       'intensidade': serializer.toJson<String?>(intensidade),
       'estrago': serializer.toJson<String?>(estrago),
-      'observacoes': serializer.toJson<String?>(observacoes),
     };
   }
 
@@ -2958,8 +2946,7 @@ class TablePontoVerificacaoData extends DataClass
           String? amostragem,
           String? fase,
           String? intensidade,
-          String? estrago,
-          String? observacoes}) =>
+          String? estrago}) =>
       TablePontoVerificacaoData(
         id: id ?? this.id,
         idTalhao: idTalhao ?? this.idTalhao,
@@ -2976,7 +2963,6 @@ class TablePontoVerificacaoData extends DataClass
         fase: fase ?? this.fase,
         intensidade: intensidade ?? this.intensidade,
         estrago: estrago ?? this.estrago,
-        observacoes: observacoes ?? this.observacoes,
       );
   @override
   String toString() {
@@ -2995,8 +2981,7 @@ class TablePontoVerificacaoData extends DataClass
           ..write('amostragem: $amostragem, ')
           ..write('fase: $fase, ')
           ..write('intensidade: $intensidade, ')
-          ..write('estrago: $estrago, ')
-          ..write('observacoes: $observacoes')
+          ..write('estrago: $estrago')
           ..write(')'))
         .toString();
   }
@@ -3030,10 +3015,8 @@ class TablePontoVerificacaoData extends DataClass
                                                       fase.hashCode,
                                                       $mrjc(
                                                           intensidade.hashCode,
-                                                          $mrjc(
-                                                              estrago.hashCode,
-                                                              observacoes
-                                                                  .hashCode))))))))))))))));
+                                                          estrago
+                                                              .hashCode)))))))))))))));
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -3052,8 +3035,7 @@ class TablePontoVerificacaoData extends DataClass
           other.amostragem == this.amostragem &&
           other.fase == this.fase &&
           other.intensidade == this.intensidade &&
-          other.estrago == this.estrago &&
-          other.observacoes == this.observacoes);
+          other.estrago == this.estrago);
 }
 
 class TablePontoVerificacaoCompanion
@@ -3073,7 +3055,6 @@ class TablePontoVerificacaoCompanion
   final Value<String?> fase;
   final Value<String?> intensidade;
   final Value<String?> estrago;
-  final Value<String?> observacoes;
   const TablePontoVerificacaoCompanion({
     this.id = const Value.absent(),
     this.idTalhao = const Value.absent(),
@@ -3090,7 +3071,6 @@ class TablePontoVerificacaoCompanion
     this.fase = const Value.absent(),
     this.intensidade = const Value.absent(),
     this.estrago = const Value.absent(),
-    this.observacoes = const Value.absent(),
   });
   TablePontoVerificacaoCompanion.insert({
     this.id = const Value.absent(),
@@ -3108,7 +3088,6 @@ class TablePontoVerificacaoCompanion
     this.fase = const Value.absent(),
     this.intensidade = const Value.absent(),
     this.estrago = const Value.absent(),
-    this.observacoes = const Value.absent(),
   })  : idTalhao = Value(idTalhao),
         latitude = Value(latitude),
         longitude = Value(longitude),
@@ -3131,7 +3110,6 @@ class TablePontoVerificacaoCompanion
     Expression<String?>? fase,
     Expression<String?>? intensidade,
     Expression<String?>? estrago,
-    Expression<String?>? observacoes,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -3149,7 +3127,6 @@ class TablePontoVerificacaoCompanion
       if (fase != null) 'fase': fase,
       if (intensidade != null) 'intensidade': intensidade,
       if (estrago != null) 'estrago': estrago,
-      if (observacoes != null) 'observacoes': observacoes,
     });
   }
 
@@ -3168,8 +3145,7 @@ class TablePontoVerificacaoCompanion
       Value<String?>? amostragem,
       Value<String?>? fase,
       Value<String?>? intensidade,
-      Value<String?>? estrago,
-      Value<String?>? observacoes}) {
+      Value<String?>? estrago}) {
     return TablePontoVerificacaoCompanion(
       id: id ?? this.id,
       idTalhao: idTalhao ?? this.idTalhao,
@@ -3186,7 +3162,6 @@ class TablePontoVerificacaoCompanion
       fase: fase ?? this.fase,
       intensidade: intensidade ?? this.intensidade,
       estrago: estrago ?? this.estrago,
-      observacoes: observacoes ?? this.observacoes,
     );
   }
 
@@ -3238,9 +3213,6 @@ class TablePontoVerificacaoCompanion
     if (estrago.present) {
       map['estrago'] = Variable<String?>(estrago.value);
     }
-    if (observacoes.present) {
-      map['observacoes'] = Variable<String?>(observacoes.value);
-    }
     return map;
   }
 
@@ -3261,8 +3233,7 @@ class TablePontoVerificacaoCompanion
           ..write('amostragem: $amostragem, ')
           ..write('fase: $fase, ')
           ..write('intensidade: $intensidade, ')
-          ..write('estrago: $estrago, ')
-          ..write('observacoes: $observacoes')
+          ..write('estrago: $estrago')
           ..write(')'))
         .toString();
   }
@@ -3339,11 +3310,6 @@ class $TablePontoVerificacaoTable extends TablePontoVerificacao
   late final GeneratedColumn<String?> estrago = GeneratedColumn<String?>(
       'estrago', aliasedName, true,
       typeName: 'TEXT', requiredDuringInsert: false);
-  final VerificationMeta _observacoesMeta =
-      const VerificationMeta('observacoes');
-  late final GeneratedColumn<String?> observacoes = GeneratedColumn<String?>(
-      'observacoes', aliasedName, true,
-      typeName: 'TEXT', requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         id,
@@ -3360,8 +3326,7 @@ class $TablePontoVerificacaoTable extends TablePontoVerificacao
         amostragem,
         fase,
         intensidade,
-        estrago,
-        observacoes
+        estrago
       ];
   @override
   String get aliasedName => _alias ?? 'table_ponto_verificacao';
@@ -3453,12 +3418,6 @@ class $TablePontoVerificacaoTable extends TablePontoVerificacao
     if (data.containsKey('estrago')) {
       context.handle(_estragoMeta,
           estrago.isAcceptableOrUnknown(data['estrago']!, _estragoMeta));
-    }
-    if (data.containsKey('observacoes')) {
-      context.handle(
-          _observacoesMeta,
-          observacoes.isAcceptableOrUnknown(
-              data['observacoes']!, _observacoesMeta));
     }
     return context;
   }
