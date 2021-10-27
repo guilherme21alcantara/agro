@@ -6,6 +6,7 @@ import 'package:culturas_new/app/data/db/dao/ponto_verificacaoDAO.dart';
 import 'package:culturas_new/app/data/db/my_database.dart';
 import 'package:culturas_new/app/data/models/ponto_verificacao.dart';
 import 'package:culturas_new/app/data/models/talhao.dart';
+import 'package:culturas_new/app/modules/monitoramento/form_verificacao.dart';
 import 'package:culturas_new/app/modules/monitoramento/widgets/verificacao_modal.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -290,17 +291,17 @@ class MonitoramentoController extends GetxController {
   }
 
   Future<void> salvar(PontoVerificacao pontoVerificacao, int idTalhao,
-      List<String?> pragaObject) async {
+      PragaObject? pragaObject) async {
     // TODO Conectar e salvar ao DAO de Talhao e DAO de Ponto de Verificacao
 
     pontoVerificacao.foto = pontoVerificacao.foto != null
         ? pontoVerificacao.foto
         : base64.encode(fotoBase64!.toList());
-    pontoVerificacao.praga = pragaObject[0];
-    pontoVerificacao.amostragem = pragaObject[1];
-    pontoVerificacao.fase = pragaObject[2];
-    pontoVerificacao.intensidade = pragaObject[3];
-    pontoVerificacao.estrago = pragaObject[3];
+    pontoVerificacao.praga = pragaObject!.praga;
+    pontoVerificacao.amostragem = pragaObject.amostragem;
+    pontoVerificacao.fase = pragaObject.fase;
+    pontoVerificacao.intensidade = pragaObject.intensidade;
+    pontoVerificacao.estrago = pragaObject.intensidade;
     pontoVerificacao.observacao = txtObservacao;
     pontoVerificacao.isPendente = false;
 

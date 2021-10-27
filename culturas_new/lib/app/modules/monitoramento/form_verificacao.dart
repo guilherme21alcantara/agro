@@ -45,7 +45,6 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
   ];
   TextEditingController txtObservacaoController = TextEditingController();
 
-
   @override
   void initState() {
     // TODO: implement initState
@@ -61,8 +60,8 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    PragaObject? pragaObject;
-    
+    PragaObject? pragaObject = new PragaObject();
+
     return Scaffold(
         appBar: AppBar(
             backgroundColor: primaryColor,
@@ -162,10 +161,9 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
                   child: DropdownSearch<String>(
                       mode: Mode.MENU,
                       items: praga,
-                      popupItemDisabled: (String s) => s.startsWith('I'),
                       onChanged: (value) {
                         print(value);
-                        pragaObject!.praga = value;
+                        pragaObject.praga = value;
                       },
                       selectedItem: widget.pontoVerificacao.praga),
                 ),
@@ -178,12 +176,11 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
                   child: DropdownSearch<String>(
                       mode: Mode.MENU,
                       items: amostragem,
-                      popupItemDisabled: (String s) => s.startsWith('I'),
                       onChanged: (value) {
                         print(value);
-                        pragaObject!.amostragem = value;
+                        pragaObject.amostragem = value;
                       },
-                      selectedItem:  widget.pontoVerificacao.amostragem),
+                      selectedItem: widget.pontoVerificacao.amostragem),
                 ),
                 SizedBox(
                   height: 10,
@@ -197,9 +194,9 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
                       popupItemDisabled: (String s) => s.startsWith('I'),
                       onChanged: (value) {
                         print(value);
-                        pragaObject!.fase = value;
+                        pragaObject.fase = value;
                       },
-                      selectedItem:  widget.pontoVerificacao.fase),
+                      selectedItem: widget.pontoVerificacao.fase),
                 ),
                 SizedBox(
                   height: 10,
@@ -213,14 +210,13 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
                       height: 60,
                       width: 170,
                       child: DropdownSearch<String>(
-                      mode: Mode.MENU,
-                      items: intensidade,
-                      popupItemDisabled: (String s) => s.startsWith('I'),
-                      onChanged: (value) {
-                        print(value);
-                        pragaObject!.intensidade = value;
-                      },
-                      selectedItem:  widget.pontoVerificacao.intensidade),
+                          mode: Mode.MENU,
+                          items: intensidade,
+                          onChanged: (value) {
+                            print(value);
+                            pragaObject.intensidade = value;
+                          },
+                          selectedItem: widget.pontoVerificacao.intensidade),
                     ),
                     SizedBox(
                       width: 20,
@@ -229,14 +225,13 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
                       height: 60,
                       width: 170,
                       child: DropdownSearch<String>(
-                      mode: Mode.MENU,
-                      items: intensidade,
-                      popupItemDisabled: (String s) => s.startsWith('I'),
-                      onChanged: (value) {
-                        print(value);
-                        pragaObject!.intensidade = value;
-                      },
-                      selectedItem:  widget.pontoVerificacao.estrago),
+                          mode: Mode.MENU,
+                          items: intensidade,
+                          onChanged: (value) {
+                            print(value);
+                            pragaObject.intensidade = value;
+                          },
+                          selectedItem: widget.pontoVerificacao.estrago),
                     ),
                   ],
                 ),
@@ -293,11 +288,16 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
   }
 }
 
-class PragaObject
-{
-
+class PragaObject {
   String? praga;
   String? amostragem;
   String? fase;
   String? intensidade;
+
+  PragaObject() {
+    this.praga = '';
+    this.amostragem = '';
+    this.fase = '';
+    this.intensidade = '';
+  }
 }

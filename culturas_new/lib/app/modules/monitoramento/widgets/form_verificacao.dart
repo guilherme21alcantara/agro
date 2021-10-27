@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:culturas_new/app/data/models/ponto_verificacao.dart';
+import 'package:culturas_new/app/modules/monitoramento/form_verificacao.dart';
 import 'package:culturas_new/app/modules/monitoramento/monitoramento_controller.dart';
 import 'package:culturas_new/core/values/colors.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,8 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<String?> pragaObject = List.empty(growable: true);
+    PragaObject? pragaObject = new PragaObject();
+
     return Scaffold(
         appBar: AppBar(
             backgroundColor: primaryColor,
@@ -169,7 +171,7 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
                     controller: pragaController,
                     onSaved: (text) {
                       text = pragaController!.value;
-                      pragaObject[0] = text;
+                      pragaObject.praga = text;
                     },
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -190,7 +192,7 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
                     controller: amostragemController,
                     onSaved: (text) {
                       text = pragaController!.value;
-                      pragaObject[1] = text;
+                      pragaObject.amostragem = text;
                     },
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -211,7 +213,7 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
                     controller: faseController,
                     onSaved: (text) {
                       text = pragaController!.value;
-                      pragaObject[2] = text;
+                      pragaObject.fase = text;
                     },
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -237,7 +239,7 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
                         controller: intensidadeController,
                         onSaved: (text) {
                           text = pragaController!.value;
-                          pragaObject[3] = text;
+                          pragaObject.intensidade = text;
                         },
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -258,7 +260,7 @@ class _FormVerificacaoScreenState extends State<FormVerificacaoScreen> {
                         controller: intensidadeController,
                         onSaved: (text) {
                           text = pragaController!.value;
-                          pragaObject[3] = text;
+                          pragaObject.intensidade = text;
                         },
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
